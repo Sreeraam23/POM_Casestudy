@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.awt.AWTException; 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 import base.CaseTestBase;
 
@@ -63,8 +66,23 @@ public class Purchase extends CaseTestBase{
 //		wait.until(ExpectedConditions.visibilityOf(year));
 		year.sendKeys(prop.getProperty("year"));
 //		wait.until(ExpectedConditions.visibilityOf(purchase));
-		wait.until(ExpectedConditions.elementToBeClickable(purchase));
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  for (int i = 0; i < 2; i++) {
+			  robot.keyPress(KeyEvent.VK_CONTROL);
+			  robot.keyPress(KeyEvent.VK_SUBTRACT);
+			  robot.keyRelease(KeyEvent.VK_SUBTRACT);
+			  robot.keyRelease(KeyEvent.VK_CONTROL);
+			  }
+		Thread.sleep(5000);
 		purchase.click();
+		Thread.sleep(3000);
+		okbtn.click();
+		
 		
 	}
 }
