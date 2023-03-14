@@ -42,7 +42,7 @@ public class CaseTestBase {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
